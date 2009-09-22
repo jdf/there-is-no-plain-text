@@ -27,10 +27,6 @@
 <!-- S5 JS -->
 <script src="ui/default/slides.js" type="text/javascript"></script>
 <style type="text/css">
-a {
-	padding-right: 16px;
-	background: right center url(link.png) no-repeat;
-}
 
 .unichar {
 	font-variant: small-caps;
@@ -68,20 +64,40 @@ a {
 
 <div class="slide">
 <h1>There is No Such Thing as Plain Text</h1>
+<h2>Avoiding Mojibake</h2>
 <h3>Jonathan Feinberg</h3>
 <h4>IBM Research, CUE</h4>
+<div class="handout">
+	<p>I'm Jonathan Feinberg, and I work here with Martin Wattenberg and
+	Fernanda Viegas in the Visual Communication Lab.</p>
+</div>
 </div>
 
 <div class="slide">
-<h1>What I Want From You</h1>
+<h1>Where I'm Coming From</h1>
+<p>
+<img src="hindi.png"/>
+<img src="hebrew.png"/>
+<img src="torture.png"/>
+		</p>
+</div>
+
+<div class="slide">
+<h1>Where I'm Coming From</h1>
+<p style="font-size:200%"><blink>I made Wordle!</blink></p>
+<p>You must do what I say!</p>
+</div>
+
+<div class="slide">
+<h1>What I'm Asking of You</h1>
 <p class="incremental">Use Unicode as your character set.</p>
-<p class="incremental">Use a Unicode encoding, preferably UTF-8, as the encoding for your text files.</p>
+<p class="incremental">Use UTF-8 as the encoding for your text files.</p>
 <div class="handout">
 </div>
 </div>
 
 <div class="slide">
-<h1>What I Want From You: Advanced</h1>
+<h1>What I'm Asking of You: Advanced</h1>
 <p>Use Unicode as your character set.</p>
 <p>Use UTF-8 as the encoding for your text files.</p>
 <p class="incremental">Always ask your collaborators to be explicit about their 
@@ -92,7 +108,7 @@ character sets and file encodings.</p>
 </div>
 
 <div class="slide">
-<h1>Encodings</h1>
+<h1>Text in Computers</h1>
 <p>In order to represent written language in computer memory,
 you need two things:</p>
 <ul>
@@ -123,6 +139,10 @@ Unicode provides a universal coded character set.
 of the world's written languages, including many dead scripts
 and a good number of made-up ones.
 </div>
+</div>
+
+<div class="slide">
+<h1>Some Encodings Are Better Than Others</h1>
 </div>
 
 <div class="slide">
