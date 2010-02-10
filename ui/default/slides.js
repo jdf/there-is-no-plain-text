@@ -270,6 +270,9 @@ function keys(key) {
 			case 67: // c
 				showHide('k');
 				break;
+			case 90: // z
+				swapMoji();
+				break;
 		}
 		if (key.which < 48 || key.which > 57) {
 			number = undef;

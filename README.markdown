@@ -1,10 +1,10 @@
-h2. Unicode for Smarties
+## There Is No Such Thing as Plain Text ##
 
-This is a slide deck to accompany a talk I've been giving at IBM.
-The idea is to spend an hour giving technially-inclined people
-the conceptual foundation they need to understand Unicode, and
-to solve Unicode-related problems they might encounter in their
-day-to-day work.
+This is a slide deck to accompany an attempted 5-minute
+talk at IBM. I say "attempted" because I wound up
+getting gonged, despite two days of editing and rehearsal.
+
+I suck.
 
 A couple of the illustrations are taken from the Unicode standard,
 and are copyright (c)The Unicode Consortium.

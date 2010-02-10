@@ -45,6 +45,12 @@
 	color: #660000;
 }
 </style>
+<script type="text/javascript">
+function swapMoji() {
+	document.getElementById('moji').style.display = 'none';
+	document.getElementById('good').style.display = 'inherit';
+}
+</script>
 </head>
 <body>
 
@@ -64,45 +70,57 @@
 
 <div class="slide">
 <h1>There is No Such Thing as Plain Text</h1>
-<h2>Avoiding Mojibake</h2>
+<h2>Avoiding 文字化け (Mojibake)</h2>
 <h3>Jonathan Feinberg</h3>
 <h4>IBM Research, CUE</h4>
 <div class="handout">
-	<p>I'm Jonathan Feinberg, and I work here with Martin Wattenberg and
-	Fernanda Viegas in the Visual Communication Lab.</p>
+	<p>Thank you</p>
+	<p>I'm Jonathan Feinberg, and I'm a programmer upstairs here at the Center.</p>
+	<p>
+		My title means that it's not enough to say that 
+		some file is a "text file"; you have to be explicit about its encoding and character set.
+	</p>
+		<p>
+			Now, we're here to talk about text, but in our conversations we've
+			leapt over the question of what text really is, from the computer's
+			perspective. It turns out that representing text is not trivial, 
+			which is why things are sometimes garbled in your emails. This garble
+			is called Mojibake, or so Wikipedia tells me.
+		</p>
+		<p>I came to think about these when I made...
+		</p>
 </div>
 </div>
 
 <div class="slide">
 <h1>Where I'm Coming From</h1>
 <p>
-<img src="hindi.png"/>
-<img src="hebrew.png"/>
-<img src="torture.png"/>
+	<img src="hindi.png"/>
+	<img src="hebrew.png"/>
+	<img src="torture.png"/>
+</p>
+	<div class="handout">
+		<p>...the Wordle web site. When people asked me to support their
+		languages, I had to learn a lot about these things, very quickly.</p>
+		<p>
+			This talk is basically the punch line of a long and
+			technical talk I like to give, called "Unicode for Smarties".
+			My point is not just to evangelize Unicode, but also to deliver
+			the message that an understanding of how text works in
+			computers is both important for the work we do and accessible.
 		</p>
+		<p>
+			Unfortunately, I can't possibly do that properly in 5 minutes.
+			So, for now, I'll have to settle for simply telling you what to do.
+		</p>
+	</div>
+		
 </div>
 
 <div class="slide">
-<h1>Where I'm Coming From</h1>
-<p style="font-size:200%"><blink>I made Wordle!</blink></p>
-<p>You must do what I say!</p>
-</div>
-
-<div class="slide">
-<h1>What I'm Asking of You</h1>
+<h1>Do These Things</h1>
 <p class="incremental">Use Unicode as your character set.</p>
 <p class="incremental">Use UTF-8 as the encoding for your text files.</p>
-<div class="handout">
-</div>
-</div>
-
-<div class="slide">
-<h1>What I'm Asking of You: Advanced</h1>
-<p>Use Unicode as your character set.</p>
-<p>Use UTF-8 as the encoding for your text files.</p>
-<p class="incremental">Always ask your collaborators to be explicit about their 
-character sets and file encodings.</p>
-<p class="incremental">Ask them to use Unicode, if they don't.</p>
 <div class="handout">
 </div>
 </div>
@@ -123,9 +141,10 @@ you need two things:</p>
 <h1>Some Character Sets Are Better Than Others</h1>
 <p>Some character sets are better than others.</p>
 <div class="handout">
-Many character sets contain only a small subset of the world's scripts,
-so you simply cannot represent mutually incompatible scripts in the
-same bytestream.
+What makes one character set better than another? It has more
+characters in it! For example, the default character set on
+this computer--windows-1252--doesn't know anything about
+non-latin alphabets.
 </div>
 </div>
 
@@ -143,6 +162,11 @@ and a good number of made-up ones.
 
 <div class="slide">
 <h1>Some Encodings Are Better Than Others</h1>
+<div class="handout">
+	The reasons are entirely technical, and we don't have a lot
+	of time, but I'll try to at least convince you that the
+	reasons exist to prefer one encoding over another.
+</div>
 </div>
 
 <div class="slide">
@@ -154,6 +178,19 @@ and a good number of made-up ones.
 		<img src="windows-932-2.png" alt="illustration of inefficiencies in decoding same"/>
 	</div>
 <div class="handout">
+	<p>This is the actual default encoding on Windows running in the 
+	Japanese locale, so it's not some strawman, although this particular
+	example is, admittedly, pretty perverse.</p>
+	<p>
+		The problem illustrated here is that there are sequences of
+		bytes that can mean a number of things, depending on
+		where you start. There are two problems with that. One,
+		if there's the slightest bit of corruption (a lost or garbled byte),
+		you can screw up a long section because there's no good way
+		to resynchronize. Related to that is the problem of "backing up"
+		one or two characters (or moving ahead) if you're parsing text.
+		You just can't figure out where you are.
+	</p>
 </div>
 </div>
 
@@ -164,16 +201,25 @@ and a good number of made-up ones.
 		<img src="bytecolors.png" alt="UTF-8 bytes have colors"/>
 	</div>
 <div class="handout">
+	In UTF-8, on the other hand, certain bit patterns are reserved for
+	certain functions, which I've represented as colors in this
+	slide. This makes UTF-8 robust in the face of corruption--you only
+	lose a single character per byte lost--and easy to resynchronize
+	in parsing--you only ever need to move a maximum of three bytes
+	in the stream to find a "start byte".
 </div>
 </div>
 
 <div class="slide">
 <h1>Some Encodings Are Better Than Others</h1>
-	<p>But for heavy CJK use, you want UTF-16</p>
 	<div style="text-align: center">
 		<img src="utfs.png" alt="The UTF family"/>
 	</div>
 <div class="handout">
+	There are other Unicode encodings, or "transformation formats",
+	defined, but we don't have time to explain why or how to choose
+	one. It's good enough to know that for most of what you want to
+	do with text, UTF-8 is excellent. And, remember, I said so.
 </div>
 </div>
 
@@ -184,6 +230,8 @@ and a good number of made-up ones.
 	on the popular platforms are all Eurocentric, and are
 	mutually incompatible.</p>
 <div class="handout">
+	If you rely on the default encodings for various pieces of software,
+	you will lose data! I want you to keep data, and understand it.
 </div>
 </div>
 
@@ -194,6 +242,8 @@ and a good number of made-up ones.
 	all Unicode encodings (the UTF family). 
 </p>
 <div class="handout">
+	All of your clients, your readers, the capitalists who are funding
+	your startups... they all have software that use Unicode.
 </div>
 </div>
 
